@@ -20,13 +20,13 @@ namespace MvcMovie.Controllers
         }
 
         // GET: Movies
-        public async Task<IActionResult> Index(string searchString)
+        public async Task<IActionResult> Index(string id)
         {
             var movies = _context.Movie.Select(x => x);
 
-            if (string.IsNullOrEmpty(searchString) == false)
+            if (string.IsNullOrEmpty(id) == false)
             {
-                movies = movies.Where(x => x.Title.Contains(searchString));
+                movies = movies.Where(x => x.Title.Contains(id));
             }
 
             return View(await movies.ToListAsync());
